@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<img class="piano-img" src="{% static 'images/piano2.jpg' %}">
+<input type="button" class="button-c" onclick="play_sound('c')"/>
+<input type="button" class="button-d" onclick="play_sound('d')"/>
+<input type="button" class="button-e" onclick="play_sound('e')"/>
+<input type="button" class="button-f" onclick="play_sound('f')"/>
+<input type="button" class="button-g" onclick="play_sound('g')"/>
+<input type="button" class="button-a" onclick="play_sound('a')"/>
+<input type="button" class="button-b" onclick="play_sound('b')"/>
+<!--<a class="piano2-shape" href="{% url 'piano3' %}">Home</a>-->
+<a class="back-shape" href="{{request.META.HTTP_REFERER|escape}}" onclick="clean_sounds()">Piano</a>
+ <script>
+    var piano = JSON.parse("{{piano|escapejs}}");;
+    var piano_a = '{% static "sounds/piano-a-1.ogg" %}';
+    var piano_b = '{% static "sounds/piano-b-1.ogg" %}';
+    var piano_c = '{% static "sounds/piano-c-1.ogg" %}';
+    var piano_d = '{% static "sounds/piano-d-1.ogg" %}';
+    var piano_e = '{% static "sounds/piano-e-1.ogg" %}';
+    var piano_f = '{% static "sounds/piano-f-1.ogg" %}';
+    var piano_g = '{% static "sounds/piano-g-1.ogg" %}';
+</script>
+    <script src="{% static 'js/piano.js' %}">
+    </script>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<img class="main-img" src="{% static 'images/notes/note.jpg' %}">
+<a class = "back-shape" href="{% url 'index' %}">Piano</a>
+<a class = "right-shape" href="{% url 'index' %}">Piano</a>
+
+
+
+{% endblock %}

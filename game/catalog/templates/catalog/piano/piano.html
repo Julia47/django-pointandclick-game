@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<img class="main-img" src="{% static 'images/piano1.jpg' %}">
+<a class = "back-shape" href="{% url 'index' %}">Piano</a>
+<a class = "piano1-shape" href="{% url 'piano2' %}">Piano</a>
+<a class = "search-shape" href="{% url 'piano3' %}">Piano</a>
+{% endblock %}

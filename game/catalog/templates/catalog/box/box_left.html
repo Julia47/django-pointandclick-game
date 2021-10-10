@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<img class="main-img" src="{% static 'images/box/box_left.jpg' %}">
+
+<input type="checkbox" id="check-1" class="box"/>
+<label for="check-1" class = "checkbox-1">
+    <img class="box-1" id="box-1" src="{% static 'images/box/choice.png' %}">
+</label>
+
+<input type="checkbox" id="check-2" class="box"/>
+<label for="check-2" class = "checkbox-1">
+    <img class="box-1" id="box-2" src="{% static 'images/box/choice.png' %}">
+</label>
+
+<input type="checkbox" id="check-3" class="box"/>
+<label for="check-3" class = "checkbox-1">
+    <img class="box-1" id="box-3" src="{% static 'images/box/choice.png' %}">
+</label>
+
+<input type="checkbox" id="check-4" class="box"/>
+<label for="check-4" class = "checkbox-1">
+    <img class="box-1" id="box-4" src="{% static 'images/box/choice.png' %}">
+</label>
+
+<input type="checkbox" id="check-5" class="box"/>
+<label for="check-5" class = "checkbox-1">
+    <img class="box-1" id="box-5" src="{% static 'images/box/choice.png' %}">
+</label>
+
+<input type="checkbox" id="check-6" class="box"/>
+<label for="check-6" class = "checkbox-1">
+    <img class="box-1" id="box-6" src="{% static 'images/box/choice.png' %}">
+</label>
+
+<a class = "back-shape" href="{% url 'box' %}">Piano</a>
+ <script src="{% static 'js/box.js' %}">
+    </script>
+{% endblock %}

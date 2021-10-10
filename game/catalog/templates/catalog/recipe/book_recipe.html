@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<img class="main-img" src="{% static 'images/recipe/recipe2.jpg' %}">
+<a class = "back-shape" href="{% url 'bed_room' %}">Piano</a>
+<a class = "right-shape" href="{% url 'book_recipe2' %}">Piano</a>
+<input type="text" class="recipe1" placeholder="Enter your text"/>
+{% endblock %}

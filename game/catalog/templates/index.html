@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+      {% load static %}
+      <img class="main-img" src="{% static 'images/main-room.jpg' %}" alt="My image">
+        <a class = "piano-shape" href="{% url 'piano' %}">Piano</a>
+        <a class = "box-shape" href="{% url 'box' %}">Piano</a>
+        <a class = "bed-room-shape" href="{% url 'bed_room' %}">Piano</a>
+<!--        <a class = "left-box-shape" href="{% url 'table_recipe' %}">Piano</a>-->
+{% endblock %}

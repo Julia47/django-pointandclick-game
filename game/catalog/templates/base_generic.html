@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <div class="main-container">
+    <div class="left-bar">
+      {% load static %}
+      <img class="main-paper" src="{% static 'images/old-paper.jpg' %}">
+      <a class = "notes" href="{% url 'notes' %}"><img class="notes" src="{% static 'images/notes/letter.png' %}"></a>
+      <div class = "left-menu">
+      <ol class="messages" id="history">
+
+      </ol>
+      <ol class="bottom-menu">
+        <li class="menu-choice"><span>Heyy</span></li>
+         <li class="menu-choice"><span>Answer for user</span></li>
+         <li class="menu-choice"><span>Answejhihoih test user</span></li>
+<!--         <input type="text" class="menu-input" placeholder="Enter answer"/>-->
+      </ol>
+</div>
+    </div>
+<div class="room">
+    {% block content %}
+    {% endblock %}
+  </div>
+  </div>
+    {% load static %}
+ <script src="{% static 'js/history.js' %}">
+    </script>
+</body>
+</html>
+
+
+

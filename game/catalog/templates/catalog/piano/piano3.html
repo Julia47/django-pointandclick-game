@@ -1,0 +1,7 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<img class="piano-img" src="{% static 'images/piano3.jpg' %}">
+<a class = "back-shape" href="{{request.META.HTTP_REFERER|escape}}">Piano</a>
+{% endblock %}

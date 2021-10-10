@@ -1,0 +1,8 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<img class="main-img" src="{% static 'images/recipe/recipe1.jpg' %}">
+<a class = "back-shape" href="{% url 'index' %}">Piano</a>
+<a class = "left-box-shape" href="{% url 'box_left' %}">Piano</a>
+{% endblock %}
