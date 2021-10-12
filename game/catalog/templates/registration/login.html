@@ -1,12 +1,22 @@
 
 {% extends "registration/base.html" %}
 {% block title %}Log-in{% endblock %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <h1>Log-in</h1>
-    <p>Please, use the following form to log-in:</p>
-    <form action="." method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Log-in"></p>
+<div class="container py-5">
+    <h1>Login</h1>
+    <form method='POST'>
+        {%csrf_token%}
+        {{form|crispy}}
+        <button class="btn btn-secondary" type='submit'>Submit</button> Need An Account? <a href="/catalog/register"  class="link-secondary"> Sign Up </a>
     </form>
+</div>
+<!--    <h1>Log-in</h1>-->
+<!--    <p>Please, use the following form to log-in:</p>-->
+<!--    <form action="." method="post">-->
+<!--        {{ form.as_p }}-->
+<!--        {% csrf_token %}-->
+<!--        <p><input type="submit" value="Log-in"></p>-->
+<!--        <p class="text-center">Don't have an account? <a href="/catalog/register">Create an account</a>.</p>-->
+<!--    </form>-->
 {% endblock %}

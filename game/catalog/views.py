@@ -1,16 +1,25 @@
+from django.core import serializers
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from json import dumps
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from jinja2.nodes import Test
+
+from .forms import LoginForm, NewUserForm
+from django.contrib import messages
+
+from .models import Note, History
 
 
 def index(request):
+    notes = Note.objects.filter(progress_id__exact=1)
+    history = History.objects.filter(progress_id__exact=1)
+    notes_serialized = serializers.serialize('json', notes)
+    history_serialized = serializers.serialize('json', history)
     return render(
         request,
-        'index.html',
-        context={},
-    )
+        'index.html', context={'notes': notes_serialized,
+                               'history': history_serialized})
 
 
 def piano(request):
@@ -105,24 +114,35 @@ def notes(request):
     )
 
 
-def user_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(username=cd['username'], password=cd['password'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('/catalog/')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login')
-    else:
-        form = LoginForm()
-    return render(request, 'registration/login.html', {'form': form})
+# def user_login(request):
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             cd = form.cleaned_data
+#             user = authenticate(username=cd['username'], password=cd['password'])
+#             if user is not None:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return redirect('/catalog/')
+#                 else:
+#                     return HttpResponse('Disabled account')
+#             else:
+#                 return HttpResponse('Invalid login')
+#     else:
+#         form = LoginForm()
+#     return render(request, 'registration/login.html', {'form': form})
 
-#
-# class Piano1View(generic.ListView):
-#     model = Piano
+
+def register_request(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        print(form)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Registration successful.")
+            return redirect("/catalog/login")
+        messages.error(request, "Unsuccessful registration. Invalid information.")
+        return HttpResponse('Unsuccessful registration. Invalid information.')
+    form = NewUserForm()
+    return render(request=request, template_name="registration/register.html", context={"register_form": form})

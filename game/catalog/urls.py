@@ -1,9 +1,11 @@
 from django.conf.urls import url
 from . import views
 from django.urls import path
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^login/$', views.user_login, name='login'),
+    # url(r'^login/$', views.user_login, name='login'),
     path('piano/', views.piano, name='piano'),
     path('piano2/', views.piano2, name='piano2'),
     path('piano3/', views.piano3, name='piano3'),
@@ -17,4 +19,7 @@ urlpatterns = [
     path('book_recipe/', views.book_recipe, name='book_recipe'),
     path('book_recipe2/', views.book_recipe2, name='book_recipe2'),
     path('notes/', views.notes, name='notes'),
+    path('register/', views.register_request, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name="registration/logged_out.html"), name='logout'),
 ]

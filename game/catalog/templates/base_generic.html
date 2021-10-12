@@ -12,6 +12,7 @@
       {% load static %}
       <img class="main-paper" src="{% static 'images/old-paper.jpg' %}">
       <a class = "notes" href="{% url 'notes' %}"><img class="notes" src="{% static 'images/notes/letter.png' %}"></a>
+        <a class = "logout" href="{% url 'notes' %}"><img class="logout" src="{% static 'images/notes/logout.png' %}"></a>
       <div class = "left-menu">
       <ol class="messages" id="history">
 
@@ -30,6 +31,7 @@
   </div>
   </div>
     {% load static %}
+  <script>console.log({{notes|safe}});</script>
  <script src="{% static 'js/history.js' %}">
     </script>
 </body>

@@ -4,8 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class GameProgress(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4,
-                          help_text="Unique ID")
+    id = models.PositiveIntegerField(primary_key=True)
     progress = models.IntegerField()
 
     def __str__(self):
@@ -13,7 +12,7 @@ class GameProgress(models.Model):
 
 
 class GameUser(AbstractUser):
-    progress_id = models.ForeignKey(GameProgress, on_delete=models.CASCADE, null=True)
+    progress = models.ForeignKey(GameProgress, on_delete=models.CASCADE, null=True, blank=True)
     # process = models.IntegerField(blank=True, null=True)
 
 
@@ -44,7 +43,7 @@ class MysteryInstance(models.Model):
 
 class History(models.Model):
     text_note = models.TextField(max_length=1000, help_text="Enter a description for history")
-    progress_id = models.ForeignKey(GameProgress, on_delete=models.CASCADE, null=True)
+    progress = models.ForeignKey(GameProgress, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.text_note
@@ -52,7 +51,7 @@ class History(models.Model):
 
 class Note(models.Model):
     text_note = models.TextField(max_length=1000, help_text="Enter a description for note")
-    progress_id = models.ForeignKey(GameProgress, on_delete=models.CASCADE, null=True)
+    progress = models.ForeignKey(GameProgress, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.text_note
