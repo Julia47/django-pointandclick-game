@@ -5,10 +5,9 @@ from django.contrib.auth import views as auth_views
 from catalog.lib.data_generator import load_data
 from catalog.models import GameUser, Note, Question
 from django.db.models import Count
-from catalog.service import createGenerator
-import pandas as pd
-# import django_filters
 
+# import django_filters
+# app_name = "game"
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     # url(r'^login/$', views.user_login, name='login'),
@@ -35,20 +34,29 @@ urlpatterns = [
          name='logout'),
     path('note_template/', views.note_template, name='note_template'),
     path('load_note/', views.load_note, name='load_note'),
-    path('load_question/', views.load_question, name='load_question'),
+    # url(r'^load_question/w+', views.load_question, name='load_question'),
+    path('load_question/<slug:answer>', views.load_question, name='load_question'),
     path('test_data/', views.test_data, name='test_load'),
 ]
 
-load_data()
+# load_data()
 
 # TEST DATA
 print('888888888888888888888888888')
 # return all question with progress in notes 1
 
-note = Note.getNote()
-n = note.getQuestion()
-print("HEYYYY")
-print(n.send(None))
+# note = Note.getNote()
+# n = note.getQuestion()
+# print("HEYYYY")
+# print(n.send(None))
+# next(n)
+# print(n.send("fine"))
+# next(n)
+# print(n.send("here"))
+# next(n)
+# print(n.send("white"))
+# print(n.send("white"))
+
 # test = n.send("fine")
 # n.close()
 

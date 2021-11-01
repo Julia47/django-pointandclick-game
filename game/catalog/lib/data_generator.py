@@ -3,7 +3,6 @@ from .objects import NoteBuilder
 from catalog.models import Note, GameProgress, GameUser
 
 
-
 def load_progress():
     p1 = GameProgress()
     p2 = GameProgress()
@@ -18,6 +17,7 @@ def load_progress():
     p2.save()
     p3.save()
 
+
 def load_user():
     u1 = GameUser()
     u1.id = 1
@@ -27,30 +27,32 @@ def load_user():
     u1.is_superuser = True
     u1.is_staff = True
     u1.save()
-    
-    
+
+
 def load_note():
     n1 = NoteBuilder().loadLevel("1").setId(1).setProgressId(
-        1).setTextQuestion("TEXT ! STRING").save().addQuestion().setId(1).setNoteId(
-            1).question("How are you?").correct("fine").bad([
-                "bad", "terribly"
+        1).setTextQuestion("TEXT ! STRING").save().addQuestion(
+        ).setId(1).setNoteId(1).question("How are you?").correct("first").bad([
+            "bad", "terribly"
+        ]).ui("buttons-template").save().build().addQuestion().setId(
+            2).setNoteId(1).question("Where are you?").correct("second").bad([
+                "at home", "atschool"
             ]).ui("buttons-template").save().build().addQuestion().setId(
-                2).setNoteId(1).question("Where are you?").correct("here").bad(
-                    ["at home", "at school"]).ui(
-                        "buttons-template"
-                    ).save().build().addQuestion().setId(3).setNoteId(
-                        1).question("Where are you?").correct("here").bad([
-                            "at home", "at school"
-                        ]).ui("buttons-template").save().build().build()
+                3).setNoteId(1).question("Where are you?").correct(
+                    "third").bad(
+                        ["athome", "at school"]).ui("buttons-template").save(
+                        ).build().addQuestion().setId(6).setNoteId(1).question(
+                            "How are you?").correct("last").bad([
+                                "bad", "terribly"
+                            ]).ui("buttons-template").save().build().build()
     n2 = NoteBuilder().loadLevel("1").setId(2).setProgressId(
         1).setTextQuestion("TEXT 2 HEYY").save().addQuestion().setId(
             4).setNoteId(2).question("Heyyy?").correct("yes").bad([
                 "no", "probably no"
             ]).ui("buttons-template").save().build().addQuestion().setId(
                 5).setNoteId(2).question("Where are you?").correct("here").bad(
-                    ["at home", "at school"]).ui("buttons-template"
-                                                 ).save().build().build()
-
+                    ["at home", "at school"
+                     ]).ui("buttons-template").save().build().build()
 
 
 def load_data():

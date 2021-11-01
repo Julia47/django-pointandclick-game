@@ -235,6 +235,7 @@ a{
   overflow: hidden;
   margin: 0.7%;
   flex: 0 0 auto;
+  position: relative;
 }
 
 .messages li.mine {
@@ -243,16 +244,16 @@ a{
   border-left-width: 16px;
 }
 
-.messages li span {
-  background: none;/* #a5b2b5; */
-  padding: 8px;
-  position: relative;
-}
+/* .messages li span { */
+/*   background: none;/\* #a5b2b5; *\/ */
+/*   padding: 8px; */
+/*   position: relative; */
+/* } */
 
-.messages li.mine span {
-  background: none;/* #5c9090;*/
-  color: black;
-}
+/* .messages li.mine span { */
+/*   background: none;/\* #5c9090;*\/ */
+/*   color: black; */
+/* } */
 
 /* width */
 ::-webkit-scrollbar {

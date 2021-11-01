@@ -72,11 +72,6 @@ test_f.send({'done': False, 'correct': "fine"})
 # for t in test_data:
 #     test_f.send(t)
 
-test_f.close()
-
-
-
-
 
 
 

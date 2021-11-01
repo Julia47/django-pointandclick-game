@@ -1,7 +1,8 @@
 <div class = "notes-main">
   <ol class="bottom-menu">
     {% for value in answers %}
-    <li class="menu-choice"><span>{{ value }}</span></li>
+    <li class="menu-choice"><span onclick={{ "check_it('" + value + "'); return false" }}>{{ value }}</span></li>
     {% endfor %}
   </ol>
 </div>
+ 

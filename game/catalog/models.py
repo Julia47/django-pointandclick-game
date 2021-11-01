@@ -1,8 +1,13 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from dataclasses import dataclass
 
 
+global_note = None
+q_generator = None
+
+ 
 class GameProgress(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     progress = models.IntegerField()
@@ -18,6 +23,7 @@ class GameUser(AbstractUser):
                                  blank=True)
 
 
+#@dataclass
 class Note(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     progress = models.ForeignKey(GameProgress,
@@ -31,7 +37,10 @@ class Note(models.Model):
         null=True,
         blank=True)
     questions = None
-    
+
+    def update_fields(self, **entries):
+        self.__dict__.update(entries)
+
     @staticmethod
     def getNote():
         """Get notes in which not are done and filter by progress of user"""
@@ -42,60 +51,27 @@ class Note(models.Model):
             note = notes[0]
             note.questions = note.question_set.all()
             return note
-        
+
     def getQuestion(self):
         questions = iter(self.questions)
         question = next(questions, None)
-        print(question.__dict__)
+        # print(question.__dict__)
         if question is None:
-            return None
+            yield None
         while True:
             answer = yield
             if answer is not None and question.correct == answer:
-                question.done = True
                 question = next(questions, None)
                 if question is None:
-                    return None
-                #print(question.__dict__)
+                    self.done = True
+                    yield None
+                print("YESSS")
                 yield question
             else:
-                return None
-            #yield question
+                print("NO NO NO")
+                yield None
 
-    # def get_question(self, note, answer):
-    #     questions = note.question_set.all()
-    #     q_generator = self.question_generator(answer)
-    #     q_generator.send(None)
-    #     for question in questions:
-    #         try:
-    #             data = q_generator.send(question)
-    #             if data is not None:
-    #                 print(data.__dict__)
-    #             next(q_generator)
-    #         except StopIteration:
-    #             break
-    #     q_generator.close()
 
-    # def questionGenerator(note):
-    #     questions = note.question_set.all()
-    #     questions = iter(questions)
-    #     while True:
-    #         if answer == questions[i + 1].correct:
-    #             questions[i + 1].done = True
-    #         q = yield questions[i]
-    #         i += 1
-    #     yield questions[i - 1]
-
-    # @staticmethod
-    # def get_question(note, answer):
-    #     questions = Note.questionGenerator(note, answer)
-    #     for _ in questions:
-    #         try:
-    #             question = next(questions)
-    #             print(question)
-    #         except StopIteration:
-    #             break
-    #     return question
 
 
 class Question(models.Model):

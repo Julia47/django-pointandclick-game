@@ -9,21 +9,34 @@ from .forms import LoginForm, NewUserForm
 from django.contrib import messages
 from django.core import serializers
 from django.forms.models import model_to_dict
-from .models import Note, History, GameUser, GameProgress
+from .models import Note, History, GameUser, GameProgress, global_note, q_generator
 from .lib.objects import NoteBuilder
-from catalog.service import get_note_and_questions, get_question
 from catalog.lib.ui_dict import UI
 from django.forms.models import model_to_dict
+from catalog.service import get_random_answers
+from django.core.serializers.json import DjangoJSONEncoder
+from django.http import QueryDict
+import itertools
+import json
+import ast
+from django.urls import reverse
+from django.http import HttpResponseBadRequest
+from django.utils.deprecation import MiddlewareMixin
+from types import SimpleNamespace
+from collections import namedtuple
+
 
 def index(request):
     notes = Note.objects.filter(progress_id__exact=1)
     history = History.objects.filter(progress_id__exact=1)
     notes_serialized = serializers.serialize('json', notes)
     history_serialized = serializers.serialize('json', history)
-    return render(
-        request,
-        'index.html', context={'notes': notes_serialized,
-                               'history': history_serialized})
+    return render(request,
+                  'index.html',
+                  context={
+                      'notes': notes_serialized,
+                      'history': history_serialized
+                  })
 
 
 def piano(request):
@@ -146,41 +159,81 @@ def register_request(request):
             login(request, user)
             messages.success(request, "Registration successful.")
             return redirect("/catalog/login")
-        messages.error(request, "Unsuccessful registration. Invalid information.")
+        messages.error(request,
+                       "Unsuccessful registration. Invalid information.")
         return HttpResponse('Unsuccessful registration. Invalid information.')
     form = NewUserForm()
-    return render(request=request, template_name="registration/register.html", context={"register_form": form})
+    return render(request=request,
+                  template_name="registration/register.html",
+                  context={"register_form": form})
 
- # def get_note():
- #     """Get notes in which not are done and filter by progress of user"""
- #     notes = Note.objects.filter(progress="1").filter(done=False)
- #     return None if len(notes) == 0 else notes[0]
 
- 
+# def get_note():
+#     """Get notes in which not are done and filter by progress of user"""
+#     notes = Note.objects.filter(progress="1").filter(done=False)
+#     return None if len(notes) == 0 else notes[0]
+
 
 def load_note(request):
-    note = Note.getNote()
-    request.session['note'] = note
-    n = note.getQuestion()
-    question = n.send(None)
-    data = {'note': note, 'question': question}
-            #UI[question.ui](obj_question=question, note=qnotes[0])}
+    global global_note
+    global q_generator
+    global_note = Note.getNote()
+    q_generator = global_note.getQuestion()
+    next(q_generator)
+    print("***************************")
+    print("reload global_note")
+    default_data = {'html': 'empty'}
+    if global_note is None:
+        return JsonResponse(default_data)
+    question = global_note.questions.first()
+    if question is None:
+        return JsonResponse(default_data)
+    answers = eval(question.bad)
+    answers.append(question.correct)
+#    RANDOMIZER FOR ANSWERS
+#    UNCOMENT THIS AFTER DEBUG
+#    answers = get_random_answers(answers)
+    ui = UI[question.ui](answers=answers)
+    data = {'html': ui}
     return JsonResponse(data)
 
-def load_question(request):
-    note = request.session['note']
-    n = note.getQuestion()
-    question = n.send("fine")
+
+def load_question(request, *args, **kwargs):
+    answer = kwargs.get('answer')
+    global global_note
+    global q_generator
+    question = None
+    answers = "hey"
+    ui = ""
+    try:
+        question = q_generator.send(answer)
+        next(q_generator)
+    except StopIteration:
+        print("Error stop iteration")
+        return redirect(reverse(load_note))
     if question is None:
-        load_note(request)
-        n.close()
-    
+        if global_note.done is True:
+            global_note.save()
+        return redirect(reverse(load_note))
+    answers = eval(question.bad)
+    answers.append(question.correct)
+#    RANDOMIZER FOR ANSWERS
+#    UNCOMENT THIS AFTER DEBUG
+#    answers = get_random_answers(answers)
+    ui = UI[question.ui](answers=answers)
+    data = {'html': ui}
+    return JsonResponse(data)
+
+
 
 
 def note_template(request):
-    data = {'html': '<li class="mine"><span>I have something for you.</span></li>'}
+    data = {
+        'html': '<li class="mine"><span>I have something for you.</span></li>'
+    }
     data = {'html': Note.objects.filter(progress_id__exact=1)}
     return JsonResponse(data)
+
 
 def test_data(request):
     # data = {'html' : Note.objects.filter(progress_id__exact=1)}
@@ -200,7 +253,10 @@ def form_handle(request):
         response, context = {}, {}
         if form.is_valid():
             record = form.save()
-            rendered = render_to_string('form-result.html', {'record': record}) #якщо треба відображати якісь результати (напр. коментарі)
+            rendered = render_to_string(
+                'form-result.html',
+                {'record': record
+                 })  #якщо треба відображати якісь результати (напр. коментарі)
             context = {'response': rendered, 'result': 'success'}
         else:
             for error in form.errors:

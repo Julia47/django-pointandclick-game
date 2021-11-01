@@ -16,11 +16,11 @@
       <a class = "logout" href="{% url 'notes' %}"><img class="logout" src="{% static 'images/notes/logout.png' %}"></a>
       <div class = "notes-main">
 	<p id="response_msg"></p> 
-	<ol class="bottom-menu">
-	  <input type="text" class="menu-input" placeholder="Enter answer"/>
-	  <input type="button" class="btn-input" value='check' onclick="check_it()"/>
+	<!-- <ol class="bottom-menu"> -->
+	  <!-- <input type="text" class="menu-input" placeholder="Enter answer"/> -->
+	  <!-- <input type="button" class="btn-input" value='check' onclick="check_it()"/> -->
 	<div id = "new-html"></div>
-	</ol>
+	<!-- </ol> -->
       </div>
     </div>
     <div class="room">
@@ -29,7 +29,7 @@
     </div>
   </div>
   {% load static %}
-  <script>console.log({{notes|safe}});</script>
+  <!-- <script>console.log({{notes|safe}});</script> -->
   <script src="{% static 'js/history.js' %}">
   </script>
 </body>
