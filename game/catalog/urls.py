@@ -2,7 +2,6 @@ from django.conf.urls import url
 from . import views
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from catalog.lib.data_generator import load_data
 from catalog.models import GameUser, Note, Question
 from django.db.models import Count
 
