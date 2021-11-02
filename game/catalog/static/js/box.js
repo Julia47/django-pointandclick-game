@@ -37,8 +37,6 @@ function checkboxes(inputs){
     }
 }
 
-
-
 function checkAll() {
     var inputs = document.querySelectorAll('.box');
     for (var i = 0; i < inputs.length; i++) {

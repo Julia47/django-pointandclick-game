@@ -87,31 +87,5 @@ function load_note(){
 
 
 load_note();
-//xcheck_it('first_ lk');
-
-
-//check_it()
-//get_data('/catalog/test_data/')
-// template
-// <button onClick="sendAnswer(question={{questionId}})>
-//  ... 
-//    <select>
-//       {{ for x in answers }}
-//  |
-//  | <---- параметри для генерації 
-//  |           шаблона(наприклад список відповідей)
-//  | <---- конфігурацію аджакс для запитів до сервера
-//  |
-//  V
-//  <button id="sendAnswer(question=12)> 
-//    <select id....>
-//        <item> Yes </item>
-//        <item> No </item>
-
-      //  <li class="mine"><span>I have something for you.</span></li>
-     //   <li><span>What is it?</span></li>
-
-
-
-
+//check_it('first_ lk');
 

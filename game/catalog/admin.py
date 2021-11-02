@@ -15,8 +15,6 @@ class PianoAdmin(admin.ModelAdmin):
     list_display = ('password',)
 
 
-
-
 admin.site.register(History)
 admin.site.register(Box)
 admin.site.register(GameProgress)

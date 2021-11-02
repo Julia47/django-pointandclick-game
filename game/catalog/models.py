@@ -1,13 +1,12 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from dataclasses import dataclass
 
-
+# global variables for local state
 global_note = None
 q_generator = None
 
- 
+
 class GameProgress(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     progress = models.IntegerField()
@@ -23,7 +22,6 @@ class GameUser(AbstractUser):
                                  blank=True)
 
 
-#@dataclass
 class Note(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     progress = models.ForeignKey(GameProgress,
@@ -72,8 +70,6 @@ class Note(models.Model):
                 yield None
 
 
-
-
 class Question(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     note = models.ForeignKey(Note,
@@ -112,13 +108,6 @@ class Box(models.Model):
 
     def __str__(self):
         return str(self.password)
-
-
-# class Book(models.Model):
-#     secret_word = models.CharField(max_length=20, help_text="Password for open key")
-#
-#     def __str__(self):
-#         return self.secret_word
 
 
 class MysteryInstance(models.Model):

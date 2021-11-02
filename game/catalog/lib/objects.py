@@ -1,7 +1,5 @@
 from copy import deepcopy
 import django
-import os
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
 from catalog.models import Note, GameProgress, Question
 
 

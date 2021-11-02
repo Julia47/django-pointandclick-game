@@ -34,84 +34,8 @@ urlpatterns = [
          name='logout'),
     path('note_template/', views.note_template, name='note_template'),
     path('load_note/', views.load_note, name='load_note'),
-    # url(r'^load_question/w+', views.load_question, name='load_question'),
-    path('load_question/<slug:answer>', views.load_question, name='load_question'),
+    path('load_question/<slug:answer>',
+         views.load_question,
+         name='load_question'),
     path('test_data/', views.test_data, name='test_load'),
 ]
-
-# load_data()
-
-# TEST DATA
-print('888888888888888888888888888')
-# return all question with progress in notes 1
-
-# note = Note.getNote()
-# n = note.getQuestion()
-# print("HEYYYY")
-# print(n.send(None))
-# next(n)
-# print(n.send("fine"))
-# next(n)
-# print(n.send("here"))
-# next(n)
-# print(n.send("white"))
-# print(n.send("white"))
-
-# test = n.send("fine")
-# n.close()
-
-
-# print(notes)
-# print("+++++++++++++++++++++++++++++")
-# test = questions
-
-# test = pd.DataFrame(list(test.values()))
-# print(test)
-# # print(test.groupby('note'))
-# print(questions)
-print("------------------------------------------------------------")
-# print(objs[0].note.all())x
-# for q in Question.objects.all():
-#     print(q.note.progress)
-
-# group by questions by note
-# n_questions = (Question.objects.all()
-#             .values('note')
-#            .annotate(dcount=Count('note'))
-#             .order_by())
-
-# def get_note_and_questions(notes):
-#     n_generator = createGenerator(notes)
-#     note = next(n_generator)
-#     questions = note.question_set.all()
-#     print(questions)
-#     while all(value.done == True for value in questions):
-#         try:
-#             print("**********")
-#             note = next(n_generator)
-#             questions = note.question_set.all()
-#             print(questions)
-#         except StopIteration:
-#             break
-#     return note, questions
-
-# #print(get_note_and_questions(notes))
-
-# def get_question(questions):
-#     q_generator = createGenerator(questions)
-#     question = next(q_generator)
-#     while question.done == True:
-#         try:
-#             print("++++++++++++++++++++++")
-#             question = next(q_generator)
-#             print(question)
-#         except StopIteration:
-#             break
-#     return question
-
-#print(get_question(get_note_and_questions(notes)[1]))
-
-# n_question = (filter(lambda q: q.note.done == False, n_questions.first()))
-
-# print(n_questions)
-# print(n_question)

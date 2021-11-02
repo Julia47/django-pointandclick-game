@@ -131,6 +131,7 @@ def notes(request):
     )
 
 
+# TO DO review this function
 # def user_login(request):
 #     if request.method == 'POST':
 #         form = LoginForm(request.POST)
@@ -168,12 +169,6 @@ def register_request(request):
                   context={"register_form": form})
 
 
-# def get_note():
-#     """Get notes in which not are done and filter by progress of user"""
-#     notes = Note.objects.filter(progress="1").filter(done=False)
-#     return None if len(notes) == 0 else notes[0]
-
-
 def load_note(request):
     global global_note
     global q_generator
@@ -190,9 +185,9 @@ def load_note(request):
         return JsonResponse(default_data)
     answers = eval(question.bad)
     answers.append(question.correct)
-#    RANDOMIZER FOR ANSWERS
-#    UNCOMENT THIS AFTER DEBUG
-#    answers = get_random_answers(answers)
+    #    RANDOMIZER FOR ANSWERS
+    #    UNCOMENT THIS AFTER DEBUG
+    #    answers = get_random_answers(answers)
     ui = UI[question.ui](answers=answers)
     data = {'html': ui}
     return JsonResponse(data)
@@ -217,14 +212,12 @@ def load_question(request, *args, **kwargs):
         return redirect(reverse(load_note))
     answers = eval(question.bad)
     answers.append(question.correct)
-#    RANDOMIZER FOR ANSWERS
-#    UNCOMENT THIS AFTER DEBUG
-#    answers = get_random_answers(answers)
+    #    RANDOMIZER FOR ANSWERS
+    #    UNCOMENT THIS AFTER DEBUG
+    #    answers = get_random_answers(answers)
     ui = UI[question.ui](answers=answers)
     data = {'html': ui}
     return JsonResponse(data)
-
-
 
 
 def note_template(request):
@@ -236,32 +229,5 @@ def note_template(request):
 
 
 def test_data(request):
-    # data = {'html' : Note.objects.filter(progress_id__exact=1)}
-    # from game.catalog.lib.objects import NoteBuilder
-    # n = NoteBuilder().addQuestion().question("NOWWWW?").correct("fine").build().loadLevel("1").setId().build()
-    # print(n.__dict__)
-    # print('TYPE')
-    # print(type(n))
-    # n.save()
     data = {'html': serializers.serialize("json", Note.objects.all())}
     return JsonResponse(data)
-
-
-def form_handle(request):
-    if request.method == 'POST' and request.is_ajax():
-        form = Form(request.POST)
-        response, context = {}, {}
-        if form.is_valid():
-            record = form.save()
-            rendered = render_to_string(
-                'form-result.html',
-                {'record': record
-                 })  #якщо треба відображати якісь результати (напр. коментарі)
-            context = {'response': rendered, 'result': 'success'}
-        else:
-            for error in form.errors:
-                response[k] = form.errors[error][0]
-                context = {'response': response, 'result': 'error'}
-        return JsonResponse(context)
-    else:
-        raise Http404
