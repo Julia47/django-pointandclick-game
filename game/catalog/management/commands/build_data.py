@@ -4,7 +4,6 @@ from catalog.models import Note, GameProgress, GameUser
 from django.core.management.base import BaseCommand
 
 
-
 def load_progress():
     p1 = GameProgress()
     p2 = GameProgress()
@@ -32,21 +31,22 @@ def load_user():
 
 
 def load_note():
-    n1 = NoteBuilder().loadLevel("1").setId(1).setProgressId(
-        1).setTextQuestion("TEXT ! STRING").save().addQuestion(
-        ).setId(1).setNoteId(1).question("How are you?").correct("HEYYY").bad([
-            "bad", "terribly"
+    n1 = NoteBuilder(
+    ).loadLevel("1").setId(1).setProgressId(1).setTextQuestion(
+        "Ви отримали в спадок будинок від вашого дядька. Оглянтесь в ньому, на столі знайдете записку, котра прояснить певні деталі."
+    ).save().addQuestion(
+    ).setId(1).setNoteId(1).question("Як звати власника будинку?").correct("Джо").bad([
+        "Пітер", "Анна"
+    ]).ui("buttons-template").save().build().addQuestion().setId(2).setNoteId(
+        1).question("Where are you?").correct("second").bad([
+            "at home", "atschool"
         ]).ui("buttons-template").save().build().addQuestion().setId(
-            2).setNoteId(1).question("Where are you?").correct("second").bad([
-                "at home", "atschool"
+            3).setNoteId(1).question("Where are you?").correct("third").bad([
+                "athome", "at school"
             ]).ui("buttons-template").save().build().addQuestion().setId(
-                3).setNoteId(1).question("Where are you?").correct(
-                    "third").bad(
-                        ["athome", "at school"]).ui("buttons-template").save(
-                        ).build().addQuestion().setId(6).setNoteId(1).question(
-                            "How are you?").correct("last").bad([
-                                "bad", "terribly"
-                            ]).ui("buttons-template").save().build().build()
+                6).setNoteId(1).question("How are you?").correct("last").bad([
+                    "bad", "terribly"
+                ]).ui("buttons-template").save().build().build()
     n2 = NoteBuilder().loadLevel("1").setId(2).setProgressId(
         1).setTextQuestion("TEXT 2 HEYY").save().addQuestion().setId(
             4).setNoteId(2).question("Heyyy?").correct("yes").bad([
@@ -66,6 +66,6 @@ def load_data():
 
 class Command(BaseCommand):
     help = "Command for loading data"
-    
+
     def handle(self, *args, **kwargs):
         load_data()

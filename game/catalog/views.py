@@ -131,6 +131,30 @@ def notes(request):
     )
 
 
+def table_letter(request):
+    return render(
+        request,
+        'catalog/table_letter.html',
+    )
+
+def letter(request):
+    return render(
+        request,
+        'catalog/letter.html',
+    )
+
+def door(request):
+    return render(
+        request,
+        'catalog/door.html',
+    )
+
+def house(request):
+    return render(
+        request,
+        'catalog/house.html',
+    )
+
 # TO DO review this function
 def user_login(request):
     if request.method == 'POST':
@@ -188,7 +212,7 @@ def load_note(request):
     #    RANDOMIZER FOR ANSWERS
     #    UNCOMENT THIS AFTER DEBUG
     #    answers = get_random_answers(answers)
-    ui = UI[question.ui](answers=answers)
+    ui = UI[question.ui](answers=answers, text=global_note.text_question, text_question=question.question)
     data = {'html': ui}
     return JsonResponse(data)
 
@@ -215,7 +239,7 @@ def load_question(request, *args, **kwargs):
     #    RANDOMIZER FOR ANSWERS
     #    UNCOMENT THIS AFTER DEBUG
     #    answers = get_random_answers(answers)
-    ui = UI[question.ui](answers=answers)
+    ui = UI[question.ui](answers=answers, text=global_note.text_question, text_question=question.question)
     data = {'html': ui}
     return JsonResponse(data)
 

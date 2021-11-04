@@ -6,6 +6,9 @@
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Bad+Script&family=Inconsolata:wght@700&display=swap');
+  </style>
 </head>
 <body>
   <div class="main-container">
@@ -15,15 +18,11 @@
       <a class = "notes" href="{% url 'notes' %}"><img class="notes" src="{% static 'images/notes/letter.png' %}"></a>
       <a class = "logout" href="{% url 'notes' %}"><img class="logout" src="{% static 'images/notes/logout.png' %}"></a>
       <div class = "notes-main">
-	<p id="response_msg"></p> 
-	<!-- <ol class="bottom-menu"> -->
-	  <!-- <input type="text" class="menu-input" placeholder="Enter answer"/> -->
-	  <!-- <input type="button" class="btn-input" value='check' onclick="check_it()"/> -->
 	<div id = "new-html"></div>
-	<!-- </ol> -->
       </div>
     </div>
     <div class="room">
+      <img class="frame" src="{% static 'images/notes/frame.png' %}">
       {% block content %}
       {% endblock %}
     </div>

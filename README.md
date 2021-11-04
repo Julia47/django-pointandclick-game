@@ -8,4 +8,4 @@ To build this game
 + + python manage.py runserver
 + create user with path  ->   http://127.0.0.1:8000/catalog/register/
 + or login with (julka, zibert230)   http://127.0.0.1:8000/catalog/login
-+ main url -> http://127.0.0.1:8000/catalog/
++ main url -> http://127.0.0.1:8000/catalog/house/

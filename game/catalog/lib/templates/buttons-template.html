@@ -1,8 +1,21 @@
-<div class = "notes-main">
-  <ol class="bottom-menu">
+<div class = "text-bar">
+  <div class = "history">
+  <span>{{ text }}</span>
+</div>
+
+<div class = "question">
+  <span>{{ text_question }}</span>
     {% for value in answers %}
     <li class="menu-choice"><span onclick={{ "check_it('" + value + "'); return false" }}>{{ value }}</span></li>
     {% endfor %}
-  </ol>
+ </div>
 </div>
- 
+
+<!-- <div class = "notes-main"> -->
+<!--   <ol class="bottom-menu"> -->
+<!--     {% for value in answers %} -->
+<!--     <li class="menu-choice"><span onclick={{ "check_it('" + value + "'); return false" }}>{{ value }}</span></li> -->
+<!--     {% endfor %} -->
+<!--   </ol> -->
+<!-- </div> -->
+
