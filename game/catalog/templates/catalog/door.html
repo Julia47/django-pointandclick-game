@@ -1,0 +1,8 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<img class="main-img" src="{% static 'images/house/door.jpg' %}">
+<a class = "door-shape" href="{% url 'index' %}">Piano</a>
+<a class = "down-arrow" href="{% url 'house' %}">Piano</a>
+{% endblock %}

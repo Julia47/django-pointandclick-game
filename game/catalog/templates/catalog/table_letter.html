@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<img class="main-img" src="{% static 'images/table_letter.jpg' %}">
+<a class = "right-shape" href="{% url 'index' %}">Table</a>
+<a class = "left-search-shape" href="{% url 'letter' %}">Table</a>
+
+{% endblock %}
