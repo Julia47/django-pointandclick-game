@@ -10,8 +10,10 @@
 <input type="button" class="button-g" onclick="play_sound('g')"/>
 <input type="button" class="button-a" onclick="play_sound('a')"/>
 <input type="button" class="button-b" onclick="play_sound('b')"/>
-<!--<a class="piano2-shape" href="{% url 'piano3' %}">Home</a>-->
+
+{% if 7 in mapped_to %}
 <a class="back-shape" href="{{request.META.HTTP_REFERER|escape}}" onclick="clean_sounds()">Piano</a>
+{% endif %}
  <script>
     var piano = JSON.parse("{{piano|escapejs}}");;
     var piano_a = '{% static "sounds/piano-a-1.ogg" %}';

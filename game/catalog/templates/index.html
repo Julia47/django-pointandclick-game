@@ -1,13 +1,23 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-      {% load static %}
-      <img class="main-img" src="{% static 'images/main-room.jpg' %}" alt="My image">
-      <a class = "left-box-shape" href="{% url 'table_letter' %}">Piano</a>
-      <a class = "piano-shape" href="{% url 'piano' %}">Piano</a>
-      <a class = "down-arrow" href="{% url 'door' %}">Piano</a>
-      <a class = "box-shape" href="{% url 'box' %}">Piano</a>
-      <a class = "bed-room-shape" href="{% url 'bed_room' %}">Piano</a>
-	{% load static %}
-<!--        <a class = "left-box-shape" href="{% url 'table_recipe' %}">Piano</a>-->
+{% load static %}
+<img class="main-img" src="{% static 'images/main-room.jpg' %}" alt="My image">
+{% if 18 in mapped_to %}
+<a class = "left-box-shape" href="{% url "load_view" id_url=18 %}">Piano</a>
+{% endif %}
+{% if 7 in mapped_to %}
+<a class = "piano-shape" href="{% url "load_view" id_url=7 %}">Piano</a>
+{% endif %}
+{% if 5 in mapped_to %}
+<a class = "down-arrow" href="{% url "load_view" id_url=5 %}">Piano</a>
+{% endif %}
+{% if 11 in mapped_to %}
+<a class = "box-shape" href="{% url "loчad_view" id_url=11 %}">Piano</a>
+{% endif %}
+{% if 14 in mapped_to %}
+<a class = "bed-room-shape" href="{% url "load_view" id_url=14 %}">Piano</a>
+{% endif %}
+{% load static %}
+
 {% endblock %}

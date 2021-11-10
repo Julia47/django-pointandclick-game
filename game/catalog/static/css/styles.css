@@ -1,12 +1,11 @@
 body{
-
     background-color: #111111;
     margin-top: 0px;
     margin-right: 0px;
     margin-left: 0px;
     overflow: hidden;
     scrollbar-width: thin;
-    font-family: 'Courgette', cursive;
+    font: 140% 'Bad Script', cursive; /* 'Courgette', cursive;*/
     scrollbar-color: #a5b2b5 transparent;
 }
 
@@ -20,7 +19,7 @@ body{
 }
 .room{
     position: relative;
-    background: url("/static/notes/frame.jpg");
+    background: #222222;
 }
 
 input{
@@ -82,14 +81,14 @@ input:active{
 .frame{
     position: absolute;
     width: 100%;
-    z-index: -2;
+    z-index: 0;
 }   
 
 
 .main-img {
-    margin: 5% 4.4% 5% 4.5%;
+    margin: 4% 0% 5% 0%;
     position: absolute;
-    width: 91%;
+    width: 95%;
     height: auto;
     z-index: -1;
 }
@@ -102,12 +101,16 @@ input:active{
 }
 
 .letter{
+    background: #cecece;
+    margin: 7% 5% 5% 5%;
     position: absolute;
-    width: 55%;
-    margin-left: 24%;
+    width: 46%;
+    margin-left: 27%;
     height:auto;
-    z-index: 0;
-}    
+    z-index: -2;
+}
+
+ 
 
 .wood{
     position: absolute;
@@ -122,6 +125,24 @@ a{
     position: absolute;
     z-index: 2;
 }
+
+.table-letter{
+    margin-top: 60%;
+    margin-left: 60%;
+    width: 24%;
+    height: 110px;
+    z-index: 0;
+    cursor: url("https://img.icons8.com/ios/40/ffffff/search--v1.png"), auto;
+}    
+
+.ticket{
+    margin-top: 60%;
+    margin-left: 30%;
+    width: 16%;
+    height: 110px;
+    cursor: url("https://img.icons8.com/ios/40/ffffff/search--v1.png"), auto;
+}
+
 .left-box-shape{
     margin-top: 40%;
     margin-left: 0%;
@@ -230,19 +251,24 @@ a{
    z-index: 4;
 }
 
-.notes{
-   position: absolute;
-   margin-top: 1%;
-   margin-left: 28%;
-   width: 16%;
+.simple-menu{
+    margin: 5% 5% 5% 28%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    color: black;
+    z-index: 4;
+}    
+
+.notes:hover{
+    color: grey;
 }
-.logout{
-   position: absolute;
-   margin-top: 1%;
-   margin-left: 31%;
-   width: 16%;
-   max-width: 16%;
-}
+
+.logout:hover{
+    color: grey;
+}    
+
 
 
 /* width */
@@ -291,50 +317,80 @@ a{
 
 .btn-input:hover{
   background-color: #5c9090;
+}
+
+.buttons{
+    margin: 15% 20% 20% 33%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;    
 }    
 
 .history{
  
 }
 
+.button {
+    background-color: #5c9090;
+    margin-right: 20%;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 6% 12%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.button {
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
 
 .letter-text span{
     color: #635f60;
     position: absolute;
-    background-color: initial;
-    margin-top: 5%;
-    margin-left: 30%;
+    margin-top: 8%;
+    margin-left: 32%;
     z-index: 5;
-    width: 42%;
+    width: 38%;
     text-align: justify;
-    font: 150% 'Bad Script', cursive; /* 'Courgette', cursive;*/
 }
 
 .question{
-    color: #8a9ca1;
+    color: #2B3920;
     margin-top: 10%;
     text-align: end; 
 }
 
+.question-start{
+    text-align: center;
+    color: white;
+    margin-top: 20%;
+}    
+
 .question li{
-    color: #8a9ca1;
+    color: #2B3920;
     cursor: pointer;
     list-style-type: none;
 }
 
 .question li:hover{
-    color: black;
+    color: #7B847A;
 }   
 
 .text-bar{
-  color:  #5c9090;
-  font: 140% 'Bad Script', cursive; /* 'Courgette', cursive;*/
+  color:  #6B6E50;
   display: flex;
   flex-direction: column;
   position: absolute;
   z-index: 4;
-  margin: 7% 2% 2% 3%;
-  width: 34%;
+  margin: 14% 2% 2% 7%;
+  width: 25%;
   overflow: auto;
   text-align: justify;
 }

@@ -5,19 +5,27 @@ from django.core.management.base import BaseCommand
 
 
 def load_progress():
-    p1 = GameProgress()
-    p2 = GameProgress()
-    p3 = GameProgress()
-    p1.id = 1
-    p2.id = 2
-    p3.id = 3
-    p1.progress = 1
-    p2.progress = 2
-    p3.progress = 3
-    p1.save()
-    p2.save()
-    p3.save()
-
+    p1 = GameProgress(1, 1, [2, 3], "catalog/user_table.html")
+    p2 = GameProgress(2, 2, [1], "catalog/letter.html")
+    p3 = GameProgress(3, 3, [4], "catalog/start_game.html")
+    p4 = GameProgress(4, 4, [5], "catalog/house.html")
+    p5 = GameProgress(5, 5, [4, 6], "catalog/door.html")
+    p6 = GameProgress(6, 6, [5, 7, 11, 14, 18], "index.html")
+    p7 = GameProgress(7, 7, [6, 8, 9], "catalog/piano/piano.html")
+    p8 = GameProgress(8, 8, [7], "catalog/piano/piano2.html")
+    p9 = GameProgress(9, 9, [7], "catalog/piano/piano3.html")
+    p10 = GameProgress(10, 10, [7], "catalog/piano/piano_secret.html")
+    p11 = GameProgress(11, 11, [6, 12], "catalog/box/box.html")
+    p12 = GameProgress(12, 12, [11], "catalog/box/box_left.html")
+    p13 = GameProgress(13, 13, [11], "catalog/box/box_right.html")
+    p14 = GameProgress(14, 14, [6, 16, 15], "catalog/bed_room.html")
+    p15 = GameProgress(15, 15, [14], "catalog/clock.html")
+    p16 = GameProgress(16, 16, [17, 14], "catalog/recipe/book_recipe.html")
+    p17 = GameProgress(17, 17, [16, 14], "catalog/recipe/book_recipe2.html")
+    p18 = GameProgress(18, 18, [6], "catalog/table_letter.html")
+    obj_list = [p1, p2, p3, p4, p5, p6, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18]
+    for o in obj_list:
+        o.save()
 
 def load_user():
     u1 = GameUser()
@@ -28,7 +36,6 @@ def load_user():
     u1.is_superuser = True
     u1.is_staff = True
     u1.save()
-
 
 def load_note():
     n1 = NoteBuilder(

@@ -3,6 +3,7 @@
 {% block content %}
 {% load static %}
 <img class="piano-img" src="{% static 'images/box/right_open.jpg' %}">
-<a class = "back-shape" href="{% url 'box' %}">Piano</a>
-
+{% if 11 in mapped_to %}
+<a class = "back-shape" href="{% url "load_view" id_url=11 %}">Piano</a>
+{% endif %}
 {% endblock %}

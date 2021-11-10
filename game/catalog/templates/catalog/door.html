@@ -3,6 +3,10 @@
 {% block content %}
 {% load static %}
 <img class="main-img" src="{% static 'images/house/door.jpg' %}">
-<a class = "door-shape" href="{% url 'index' %}">Piano</a>
-<a class = "down-arrow" href="{% url 'house' %}">Piano</a>
+{% if 6 in mapped_to %}
+<a class = "door-shape" href="{% url "load_view" id_url=6 %}">Piano</a>
+{% endif %}
+{% if 4 in mapped_to %}
+<a class = "down-arrow" href="{% url "load_view" id_url=4 %}">Piano</a>
+{% endif %}
 {% endblock %}

@@ -3,7 +3,13 @@
 {% block content %}
 {% load static %}
 <img class="main-img" src="{% static 'images/bed-room.jpg' %}">
-<a class = "bed-room-shape" href="{% url 'index' %}">Piano</a>
-<a class = "left-box-shape" href="{% url 'clock' %}">Piano</a>
-<a class = "right-search-shape" href="{% url 'book_recipe' %}">Piano</a>
+{% if  6 in mapped_to %}
+<a class = "bed-room-shape" href="{% url "load_view" id_url=6 %}">Piano</a>
+{% endif %}
+{% if  15 in mapped_to %}
+<a class = "left-box-shape" href="{% url "load_view" id_url=15 %}">Piano</a>
+{% endif %}
+{% if  16 in mapped_to %}
+<a class = "right-search-shape" href="{% url "load_view" id_url=16 %}">Piano</a>
+{% endif %}
 {% endblock %}

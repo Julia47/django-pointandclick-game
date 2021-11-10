@@ -9,8 +9,21 @@ q_generator = None
 
 class GameProgress(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
-    progress = models.IntegerField()
-
+    progress = models.IntegerField(default=1)
+    mapped_to = models.TextField(max_length=100,
+                                 help_text="Enter vector of urls id",
+                                 null=True,
+                                 blank=True)
+    template = models.TextField(max_length=100,
+                                   help_text="Url",
+                                   null=True,
+                                   blank=True)
+    def __init__(self, id, progress, mapped_to, template, *args, **kwargs):
+        super(GameProgress, self).__init__(self, *args, **kwargs)
+        self.id = id
+        self.progress = progress
+        self.mapped_to = mapped_to
+        self.template = template     
     def __str__(self):
         return str(self.progress)
 

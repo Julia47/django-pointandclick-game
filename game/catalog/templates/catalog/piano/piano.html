@@ -3,7 +3,13 @@
 {% block content %}
 {% load static %}
 <img class="main-img" src="{% static 'images/piano1.jpg' %}">
-<a class = "back-shape" href="{% url 'index' %}">Piano</a>
+{% if 6 in mapped_to %}
+<a class = "back-shape" href="{% url "load_view" id_url=6 %}">Piano</a>
+{% endif %}
+{% if 8 in mapped_to %}
 <a class = "piano1-shape" href="{% url 'piano2' %}">Piano</a>
-<a class = "search-shape" href="{% url 'piano3' %}">Piano</a>
+{% endif %}
+{% if 9 in mapped_to %}
+<a class = "search-shape" href="{% url "load_view" id_url=9 %}">Piano</a>
+{% endif %}
 {% endblock %}

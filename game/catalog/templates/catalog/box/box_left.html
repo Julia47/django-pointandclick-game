@@ -34,7 +34,9 @@
     <img class="box-1" id="box-6" src="{% static 'images/box/choice.png' %}">
 </label>
 
-<a class = "back-shape" href="{% url 'box' %}">Piano</a>
+{% if 11 in mapped_to %}
+<a class = "back-shape" href="{% url "load_view" id_url=11%}">Piano</a>
+{% endif %}
  <script src="{% static 'js/box.js' %}">
     </script>
 {% endblock %}

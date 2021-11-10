@@ -3,5 +3,7 @@
 {% block content %}
 {% load static %}
 <img class="main-img" src="{% static 'images/piano3.jpg' %}">
+{% if 7 in mapped_to %}
 <a class = "back-shape" href="{{request.META.HTTP_REFERER|escape}}">Piano</a>
+{% endif %}
 {% endblock %}

@@ -3,7 +3,9 @@
 {% block content %}
 {% load static %}
 <img class="main-img" src="{% static 'images/table_letter.jpg' %}">
-<a class = "right-shape" href="{% url 'index' %}">Table</a>
-<a class = "left-search-shape" href="{% url 'letter' %}">Table</a>
+{% if 6 in mapped_to %}
+<a class = "right-shape" href="{% url "load_view" id_url=6 %}">Table</a>
+{% endif %}
+
 
 {% endblock %}

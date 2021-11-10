@@ -42,7 +42,7 @@ function check_it(answer){
     // get_data(url)
 
     console.log(answer);
-    let url = '/catalog/load_question/' + answer;
+    let url = '/catalog/load_question?answer=' + answer;
     console.log(url);
     let data = "heyy";
     let csrftoken = getCookie('csrftoken');
@@ -85,6 +85,21 @@ function load_note(){
 
 // !! TO DO Problem with spaces in url
 
+function notes(){
+    window.location.assign("notes");
+}
+
+function logout(){
+    window.location.assign("logout");
+}
+
+function yes_start(){
+    window.location.assign("/catalog/house/");
+}
+
+function no_start(){
+    window.location.assign("/catalog/user_table/");
+}    
 
 load_note();
 //check_it('first_ lk');

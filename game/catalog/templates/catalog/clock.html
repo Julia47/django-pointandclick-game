@@ -3,5 +3,7 @@
 {% block content %}
 {% load static %}
 <img class="main-img" src="{% static 'images/clock.jpg' %}">
-<a class = "right-shape" href="{% url 'bed_room' %}">Piano</a>
+{% if 14 in mapped_to %}
+<a class = "right-shape" href="{% url "load_view" id_url=14 %}">Piano</a>
+{% endif %}
 {% endblock %}

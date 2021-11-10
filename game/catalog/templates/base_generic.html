@@ -14,9 +14,11 @@
   <div class="main-container">
     <div class="left-bar">
       {% load static %}
-      <img class="main-paper" src="{% static 'images/old-paper.jpg' %}">
-      <a class = "notes" href="{% url 'notes' %}"><img class="notes" src="{% static 'images/notes/letter.png' %}"></a>
-      <a class = "logout" href="{% url 'notes' %}"><img class="logout" src="{% static 'images/notes/logout.png' %}"></a>
+      <img class="main-paper" src="{% static 'images/notes/old-paper.png' %}">
+      <div class="simple-menu">
+	<span class = "notes" onclick="notes()">Записник</span>
+	<span class = "logout" onclick="logout()">Вихід</span>
+      </div>
       <div class = "notes-main">
 	<div id = "new-html"></div>
       </div>

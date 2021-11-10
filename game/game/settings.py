@@ -69,7 +69,7 @@ TEMPLATES = [
         },
     },
 ]
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/catalog/load_view/1'
 WSGI_APPLICATION = 'game.wsgi.application'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
