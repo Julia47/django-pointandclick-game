@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<img class="main-img" src="{% static 'images/house/user_table.png' %}">
+{% if  2 in mapped_to %}
+<a class = "table-letter" href="{% url "load_view" id_url=2 %}">Piano</a>
+{% endif %}
+{% if  3 in mapped_to %}
+<a class = "ticket" href="{% url "load_view" id_url=3 %}">Piano</a>
+{% endif %}
+{% endblock %}
