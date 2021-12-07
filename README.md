@@ -33,3 +33,9 @@ To build this game
 2. create user with path  ->   http://127.0.0.1:8000/catalog/register/
 3. or login with (`julka`, `zibert230`)   http://127.0.0.1:8000/catalog/login
 4. main url -> http://127.0.0.1:8000/catalog/house/
+
+## Demo
+![alt text](https://github.com/Julia47/django-pointandclick-game/blob/main/game/catalog/static/images/demo/user-table-1.png)
+![alt text](https://github.com/Julia47/django-pointandclick-game/blob/main/game/catalog/static/images/demo/user-table-2.png)
+![alt text](https://github.com/Julia47/django-pointandclick-game/blob/main/game/catalog/static/images/demo/living-room.png)
+
